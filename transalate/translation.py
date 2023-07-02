@@ -1,6 +1,6 @@
-import requests
-from colorama import Fore, Style
-from termcolor import colored
+import requests  #Used for making HTTP requests to the translation API.
+from colorama import Fore, Style #Provides cross-platform support for colored terminal output.
+from termcolor import colored #Allows you to print colored text in the console.
 
 API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJJbnRlcm5zaGlwcyIsImV4cCI6NDg0MTQ4NzEyMn0.-j3rdudJ9pXEm3-456LLiDPun5SwIm5sw-RoNvgDwfk"
 
