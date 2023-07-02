@@ -1,6 +1,7 @@
 from exercises.basics import collatz, distinct_numbers
 from constants import collatz_1m, collatz_556
 
+
 def test_collatz_1():
     assert collatz(3) == [3, 10, 5, 16, 8, 4, 2, 1]
     assert collatz(10) == [10, 5, 16, 8, 4, 2, 1]
@@ -15,7 +16,7 @@ def test_collatz_2():
 
 def test_collatz_3():
     assert collatz(1000000) == collatz_1m
-    assert collatz(556443) ==  collatz_556
+    assert collatz(556443) == collatz_556
 
 
 def test_distinct_numbers_1():
