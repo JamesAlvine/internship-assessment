@@ -22,23 +22,26 @@ def translate_text(source_lang, target_lang, text):
     else:
         return "Translation Error"
 
-def choose_target_language():
-    print("(your program): Please choose the target language: (one of Luganda, Runyankole, Ateso, Lugbara, or Acholi)")
-    target_lang = input("(the user): ")
+def choose_target_language(source_lang):
+    if source_lang == "English":
+        print("(your program): Please choose the target language: (one of Luganda, Runyankole, Ateso, Lugbara, or Acholi)")
+        target_lang = input("(the user): ")
+    else:
+        target_lang = "English"
     return target_lang
 
-def get_user_input(source_lang):
+def get_user_input():
+    print("(your program): Please choose the source language: (English, Luganda, Runyankole, Ateso, Lugbara, or Acholi)")
+    source_lang = input("(the user): ")
+    target_lang = choose_target_language(source_lang)
     print("(your program): Enter the text to translate:")
     text = input("(the user): ")
-    target_lang = "English" if source_lang != "English" else choose_target_language()
     translated_text = translate_text(source_lang, target_lang, text)
     translated_text = colored(translated_text, "green")
     print("(your program):", translated_text)
 
 def main():
-    print("(your program): Please choose the source language:")
-    source_lang = input("(the user): ")
-    get_user_input(source_lang)
+    get_user_input()
 
 if __name__ == "__main__":
     main()
