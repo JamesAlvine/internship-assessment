@@ -10,13 +10,14 @@ def translate_text(source_language, target_language, text):
         "Authorization": f"Bearer {api_key}",
         "Content-Type": "application/json"
     }
+    # this creates a dictionary called payloads containing the data to be sent in the API requests
     payload = {
         "source_language": source_language,
         "target_language": target_language,
         "text": text
     }
     response = requests.post(f"{url}/tasks/translate", headers=headers, json=payload)
-    
+    # this sends POST requests
     if response.status_code == 200:
         translated_text = response.json()["text"]
         print("Translated text:", translated_text)
