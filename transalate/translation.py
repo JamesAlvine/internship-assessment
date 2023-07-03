@@ -1,47 +1,39 @@
-import requests  #Used for making HTTP requests to the translation API.
-from colorama import Fore, Style #Provides cross-platform support for colored terminal output.
-from termcolor import colored #Allows you to print colored text in the console.
+import requests
 
-API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJJbnRlcm5zaGlwcyIsImV4cCI6NDg0MTQ4NzEyMn0.-j3rdudJ9pXEm3-456LLiDPun5SwIm5sw-RoNvgDwfk"
+# Sunbird AI API endpoint
+url = 'https://sunbird-ai-api-5bq6okiwgq-ew.a.run.app'
+api_key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJJbnRlcm5zaGlwcyIsImV4cCI6NDg0MTQ4NzEyMn0.-j3rdudJ9pXEm3-456LLiDPun5SwIm5sw-RoNvgDwfk'  # Replace sunbird ai API key
 
-def translate_text(source_lang, target_lang, text):
-    url = 'https://sunbird-ai-api-5bq6okiwgq-ew.a.run.app'
+# Helper function to translate text
+def translate_text(source_language, target_language, text):
     headers = {
-        "Authorization": f"Api-Key {API_KEY}",
+        "Authorization": f"Bearer {api_key}",
         "Content-Type": "application/json"
     }
     payload = {
-        "source_language": source_lang,
-        "target_language": target_lang,
+        "source_language": source_language,
+        "target_language": target_language,
         "text": text
     }
     response = requests.post(f"{url}/tasks/translate", headers=headers, json=payload)
+    
     if response.status_code == 200:
         translated_text = response.json()["text"]
-        return translated_text
+        print("Translated text:", translated_text)
     else:
-        return "Translation Error"
+        print("Error:", response.status_code, response.text)
 
-def choose_target_language(source_lang):
-    if source_lang == "English":
-        print("(your program): Please choose the target language: (one of Luganda, Runyankole, Ateso, Lugbara, or Acholi)")
-        target_lang = input("(the user): ")
-    else:
-        target_lang = "English"
-    return target_lang
+# Prompt the user for source language
+source_language = input("Please choose the source language (English, Luganda, Runyankole, Ateso, Lugbara, or Acholi): ")
 
-def get_user_input():
-    print("(your program): Please choose the source language: (English, Luganda, Runyankole, Ateso, Lugbara, or Acholi)")
-    source_lang = input("(the user): ")
-    target_lang = choose_target_language(source_lang)
-    print("(your program): Enter the text to translate:")
-    text = input("(the user): ")
-    translated_text = translate_text(source_lang, target_lang, text)
-    translated_text = colored(translated_text, "green")
-    print("(your program):", translated_text)
+# Prompt the user for target language if the source language is English, otherwise set English as the target language
+if source_language.lower() == "english":
+    target_language = input("Please choose the target language (Luganda, Runyankole, Ateso, Lugbara, or Acholi): ")
+else:
+    target_language = "English"
 
-def main():
-    get_user_input()
+# Prompt the user for text to translate
+text = input("Enter the text to translate: ")
 
-if __name__ == "__main__":
-    main()
+# Translate the input text into the target language
+translate_text(source_language, target_language, text)
