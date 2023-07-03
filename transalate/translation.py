@@ -21,6 +21,10 @@ def translate_text(source_language, target_language, text):
     if response.status_code == 200:
         translated_text = response.json()["text"]
         print("Translated text:", translated_text)
+        # this shows where the error is
+    elif response.status_code ==422:
+        error_message = response.json()["detail"][0]["msg"]
+        print("please choose one language:")
     else:
         print("Error:", response.status_code, response.text)
 
