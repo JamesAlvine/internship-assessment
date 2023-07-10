@@ -26,5 +26,8 @@ def distinct_numbers(numbers: List[int]) -> int:
 
     E.g if numbers = [2, 3, 2, 2, 3], then the answer is 2 since there are only 2 unique numbers: 2 and 3.
     """
+    
 
     return len(set(numbers))
+
+# set(numbers) creates a set from the numbers list, which eliminates duplicate elements and retains only unique values.
