@@ -1,8 +1,13 @@
+import os
 import requests
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Sunbird AI API endpoint
 url = 'https://sunbird-ai-api-5bq6okiwgq-ew.a.run.app'
-api_key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJJbnRlcm5zaGlwcyIsImV4cCI6NDg0MTQ4NzEyMn0.-j3rdudJ9pXEm3-456LLiDPun5SwIm5sw-RoNvgDwfk'  # Replace with your Sunbird AI API key
+api_key = os.getenv('API_KEY')
 
 # List of target languages
 target_languages = ["English", "Luganda", "Runyankole", "Ateso", "Lugbara", "Acholi"]
